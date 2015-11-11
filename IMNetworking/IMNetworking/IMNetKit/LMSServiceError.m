@@ -6,8 +6,8 @@
 //  Copyright © 2015年 LQ. All rights reserved.
 //
 
-#import "ServiceError.h"
+#import "LMSServiceError.h"
 
-@implementation ServiceError
+@implementation LMSServiceError
 
 @end

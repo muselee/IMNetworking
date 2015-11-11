@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Request.h"
+#import "LMSRequest.h"
 @interface LoginApi : NSObject
 @property (copy,nonatomic)NSString * msg;
 @property (copy,nonatomic)NSString * email;
@@ -16,5 +16,5 @@
 + (void)loginWithUserName:(NSString *)userName
                  password:(NSString *)password
            susessCallBack:(void(^)(LoginApi * response))successCallBack
-             failCallback:(void(^)(ServiceError * error))failCallback;
+             failCallback:(void(^)(LMSServiceError * error))failCallback;
 @end

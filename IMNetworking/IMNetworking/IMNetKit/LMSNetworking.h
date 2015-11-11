@@ -10,19 +10,19 @@
 #import "MJExtension.h"
 #define kModelNetworkDefaultArrayKey    @"kObjectDefaultArrayKey"
 #define kNetworkAPIErrorModelParse      @"Model解析错误[数据类型不匹配]"
-typedef NS_ENUM(NSUInteger,NetworkAPIErrorCode) {
+typedef NS_ENUM(NSUInteger,LMSNetworkAPIErrorCode) {
     // Model解析错误
-    NetworkAPIErrorCodeModelParse = 9999
+    LMSNetworkAPIErrorCodeModelParse = 9999
     
 };
 // 成功和失败块
 typedef void (^BlockHTTPRequestSuccess)(AFHTTPRequestOperation *operation, id responseObject);
 typedef void (^BlockHTTPRequestFailure)(AFHTTPRequestOperation *operation, NSError *error);
 
-@interface Networking : AFHTTPRequestOperationManager
+@interface LMSNetworking : AFHTTPRequestOperationManager
 
 
-@property (nonatomic,assign)BOOL isLoggingEnabled;
+@property (nonatomic,assign) BOOL isLoggingEnabled;
 
 //基础类
 - (AFHTTPRequestOperation *)sendRequestForURL:(NSURL *)fullURL

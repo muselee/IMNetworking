@@ -6,12 +6,12 @@
 //  Copyright © 2015年 bestdo. All rights reserved.
 //
 
-#import "Networking.h"
+#import "LMSNetworking.h"
 NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
 
-@interface Networking()
+@interface LMSNetworking()
 @end
-@implementation Networking
+@implementation LMSNetworking
 
 #pragma mark - 基础Http请求
 
@@ -19,9 +19,7 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
 {
     //Add public HTTP params
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    NSDictionary *commonParam = [self commonRequestParam];
     //添加公共参数
-    [dictionary addEntriesFromDictionary:commonParam];
     //相同key会覆盖公共参数
     [dictionary addEntriesFromDictionary:parameters];
     
@@ -35,7 +33,7 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
         }
         NSError *error = nil;
         //转换模型
-        NSObject *responseModel = [Networking modelFromResponseDictionary:[Networking dictionaryFromResponseData:responseObject] withModelClass:responseModelClass error:&error];
+        NSObject *responseModel = [LMSNetworking modelFromResponseDictionary:[LMSNetworking dictionaryFromResponseData:responseObject] withModelClass:responseModelClass error:&error];
         
         if (error == nil && success && responseModelClass != nil) {
             success(operation, responseModel);
@@ -56,24 +54,6 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
     
     return operation;
 }
-#pragma mark - Override Method
-
-- (NSDictionary *)commonRequestParam
-{
-    return nil;
-}
-
-+ (NSDictionary *)willParseDicToModel:(NSDictionary *)netDic
-{
-    //Base Class Method do nothing
-    return netDic;
-}
-
-- (void)ignoreCacheCommonParam:(NSDictionary *)ignoreCommonDic;
-{
-    //Base Class Method do nothing
-    return;
-}
 #pragma mark - Model Network Client Support Service data
 
 + (BOOL)isClassTypeSupport:(id)checkData
@@ -90,7 +70,7 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
 
 + (NSDictionary *)dictionaryFromResponseData:(id)responseData {
     
-    if ([Networking isClassTypeSupport:responseData] == NO) {
+    if ([LMSNetworking isClassTypeSupport:responseData] == NO) {
         return nil;
     }
     
@@ -119,12 +99,11 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
     @try
     {
         //如何需要特殊处理服务器返回的数据结构，在此处处理
-        NSDictionary *dealedDic = [Networking willParseDicToModel:dictionary];
-        aModel = (NSObject *)[ModelClass objectWithKeyValues:dealedDic error:error];
+        aModel = (NSObject *)[ModelClass objectWithKeyValues:dictionary error:error];
     }
     @catch (NSException *exception) {
         *error = [NSError errorWithDomain:kNetworkDataParseErrorDomain
-                                     code:NetworkAPIErrorCodeModelParse
+                                     code:LMSNetworkAPIErrorCodeModelParse
                                  userInfo:@{
                                             NSLocalizedDescriptionKey:kNetworkAPIErrorModelParse
                                             }];

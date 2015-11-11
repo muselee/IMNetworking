@@ -17,8 +17,8 @@
              };
 }
 
-+ (void)loginWithUserName:(NSString *)userName password:(NSString *)password susessCallBack:(void (^)(LoginApi *))successCallBack failCallback:(void (^)(ServiceError *))failCallback{
-    Request * request=[Request create:@"Login" parameterValues:@[userName,password]];
++ (void)loginWithUserName:(NSString *)userName password:(NSString *)password susessCallBack:(void (^)(LoginApi *))successCallBack failCallback:(void (^)(LMSServiceError *))failCallback{
+    LMSRequest * request=[LMSRequest create:@"Login" parameterValues:@[userName,password]];
     [request send:successCallBack failCallback:failCallback];
 }
 @end

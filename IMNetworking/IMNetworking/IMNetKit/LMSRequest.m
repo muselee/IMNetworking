@@ -6,17 +6,17 @@
 //  Copyright © 2015年 LQ. All rights reserved.
 //
 
-#import "Request.h"
-#import "ServiceModel.h"
-#import "ServiceXMLData.h"
-@interface Request(){
-    ServiceModel* _serviceMethod;
+#import "LMSRequest.h"
+#import "LMSServiceModel.h"
+#import "LMSServiceXMLData.h"
+@interface LMSRequest(){
+    LMSServiceModel* _serviceMethod;
     NSArray* _parameterValues;
     callBackResponse _successCallback;
     callBackResponse _failCallback;
 }
 @end
-@implementation Request
+@implementation LMSRequest
 
 -(void) send:(callBackResponse) successCallback {
     _successCallback = successCallback;
@@ -49,27 +49,27 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (_failCallback) {
-            ServiceError* serviceError = nil;
+            LMSServiceError* serviceError = nil;
             if (error != nil) {
                 if (error.code ==9999) {
                     //数模转换错误
-                    serviceError = [[ServiceError alloc] init];
+                    serviceError = [[LMSServiceError alloc] init];
                     serviceError.message = kNetworkAPIErrorModelParse;
-                    serviceError.errorType = ServiceErrorTypeParsing;
+                    serviceError.errorType = LMSServiceErrorTypeParsing;
                 }else {
                     //网络错误 超时 服务器地址错误 等
-                    serviceError = [[ServiceError alloc] init];
+                    serviceError = [[LMSServiceError alloc] init];
                     serviceError.message = [_serviceMethod messageForError:error];
-                    serviceError.errorType = ServiceErrorTypeNetwork;
+                    serviceError.errorType = LMSServiceErrorTypeNetwork;
                 }
                
             }
             else {
                 // http 请求错误
-                serviceError = [[ServiceError alloc] init];
+                serviceError = [[LMSServiceError alloc] init];
                 serviceError.httpCode = operation.response.statusCode;
                 serviceError.message = operation.responseString;
-                serviceError.errorType = ServiceErrorTypeHttp;
+                serviceError.errorType = LMSServiceErrorTypeHttp;
             }
 
             _failCallback(serviceError);
@@ -78,8 +78,8 @@
 }
 +(instancetype) create:(NSString*)serviceMethodName parameterValues:(NSArray*) parameterValues {
     
-    Request* request = [[Request alloc] init];
-    request->_serviceMethod = [ServiceXMLData methodWithName:serviceMethodName];
+    LMSRequest* request = [[LMSRequest alloc] init];
+    request->_serviceMethod = [LMSServiceXMLData methodWithName:serviceMethodName];
     request->_parameterValues = parameterValues;
     return request;
 }

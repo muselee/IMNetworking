@@ -50,12 +50,12 @@
 		DF1F20321BF33E5B00BA019D /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = DF1F20001BF33E5B00BA019D /* License.txt */; settings = {ASSET_TAGS = (); }; };
 		DF1F20331BF33E5B00BA019D /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F20031BF33E5B00BA019D /* RXMLElement.m */; settings = {ASSET_TAGS = (); }; };
 		DF1F20341BF33E5B00BA019D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DF1F20041BF33E5B00BA019D /* README.md */; settings = {ASSET_TAGS = (); }; };
-		DF1F20351BF33E5B00BA019D /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F20061BF33E5B00BA019D /* Networking.m */; settings = {ASSET_TAGS = (); }; };
-		DF1F20361BF33E5B00BA019D /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F20081BF33E5B00BA019D /* Request.m */; settings = {ASSET_TAGS = (); }; };
+		DF1F20351BF33E5B00BA019D /* LMSNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F20061BF33E5B00BA019D /* LMSNetworking.m */; settings = {ASSET_TAGS = (); }; };
+		DF1F20361BF33E5B00BA019D /* LMSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F20081BF33E5B00BA019D /* LMSRequest.m */; settings = {ASSET_TAGS = (); }; };
 		DF1F20371BF33E5B00BA019D /* Service_Config.xml in Resources */ = {isa = PBXBuildFile; fileRef = DF1F20091BF33E5B00BA019D /* Service_Config.xml */; settings = {ASSET_TAGS = (); }; };
-		DF1F20381BF33E5B00BA019D /* ServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F200B1BF33E5B00BA019D /* ServiceError.m */; settings = {ASSET_TAGS = (); }; };
-		DF1F20391BF33E5B00BA019D /* ServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F200D1BF33E5B00BA019D /* ServiceModel.m */; settings = {ASSET_TAGS = (); }; };
-		DF1F203A1BF33E5B00BA019D /* ServiceXMLData.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F200F1BF33E5B00BA019D /* ServiceXMLData.m */; settings = {ASSET_TAGS = (); }; };
+		DF1F20381BF33E5B00BA019D /* LMSServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F200B1BF33E5B00BA019D /* LMSServiceError.m */; settings = {ASSET_TAGS = (); }; };
+		DF1F20391BF33E5B00BA019D /* LMSServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F200D1BF33E5B00BA019D /* LMSServiceModel.m */; settings = {ASSET_TAGS = (); }; };
+		DF1F203A1BF33E5B00BA019D /* LMSServiceXMLData.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F200F1BF33E5B00BA019D /* LMSServiceXMLData.m */; settings = {ASSET_TAGS = (); }; };
 		DF1F203B1BF33E5B00BA019D /* LoginApi.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F20111BF33E5B00BA019D /* LoginApi.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -160,17 +160,17 @@
 		DF1F20021BF33E5B00BA019D /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
 		DF1F20031BF33E5B00BA019D /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
 		DF1F20041BF33E5B00BA019D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		DF1F20051BF33E5B00BA019D /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
-		DF1F20061BF33E5B00BA019D /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
-		DF1F20071BF33E5B00BA019D /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
-		DF1F20081BF33E5B00BA019D /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
+		DF1F20051BF33E5B00BA019D /* LMSNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMSNetworking.h; sourceTree = "<group>"; };
+		DF1F20061BF33E5B00BA019D /* LMSNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMSNetworking.m; sourceTree = "<group>"; };
+		DF1F20071BF33E5B00BA019D /* LMSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMSRequest.h; sourceTree = "<group>"; };
+		DF1F20081BF33E5B00BA019D /* LMSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMSRequest.m; sourceTree = "<group>"; };
 		DF1F20091BF33E5B00BA019D /* Service_Config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Service_Config.xml; sourceTree = "<group>"; };
-		DF1F200A1BF33E5B00BA019D /* ServiceError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceError.h; sourceTree = "<group>"; };
-		DF1F200B1BF33E5B00BA019D /* ServiceError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceError.m; sourceTree = "<group>"; };
-		DF1F200C1BF33E5B00BA019D /* ServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceModel.h; sourceTree = "<group>"; };
-		DF1F200D1BF33E5B00BA019D /* ServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceModel.m; sourceTree = "<group>"; };
-		DF1F200E1BF33E5B00BA019D /* ServiceXMLData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceXMLData.h; sourceTree = "<group>"; };
-		DF1F200F1BF33E5B00BA019D /* ServiceXMLData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceXMLData.m; sourceTree = "<group>"; };
+		DF1F200A1BF33E5B00BA019D /* LMSServiceError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMSServiceError.h; sourceTree = "<group>"; };
+		DF1F200B1BF33E5B00BA019D /* LMSServiceError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMSServiceError.m; sourceTree = "<group>"; };
+		DF1F200C1BF33E5B00BA019D /* LMSServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMSServiceModel.h; sourceTree = "<group>"; };
+		DF1F200D1BF33E5B00BA019D /* LMSServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMSServiceModel.m; sourceTree = "<group>"; };
+		DF1F200E1BF33E5B00BA019D /* LMSServiceXMLData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMSServiceXMLData.h; sourceTree = "<group>"; };
+		DF1F200F1BF33E5B00BA019D /* LMSServiceXMLData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMSServiceXMLData.m; sourceTree = "<group>"; };
 		DF1F20101BF33E5B00BA019D /* LoginApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginApi.h; sourceTree = "<group>"; };
 		DF1F20111BF33E5B00BA019D /* LoginApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -269,17 +269,17 @@
 			isa = PBXGroup;
 			children = (
 				DF1F1FB41BF33E5B00BA019D /* Libs */,
-				DF1F20051BF33E5B00BA019D /* Networking.h */,
-				DF1F20061BF33E5B00BA019D /* Networking.m */,
-				DF1F20071BF33E5B00BA019D /* Request.h */,
-				DF1F20081BF33E5B00BA019D /* Request.m */,
+				DF1F20051BF33E5B00BA019D /* LMSNetworking.h */,
+				DF1F20061BF33E5B00BA019D /* LMSNetworking.m */,
+				DF1F20071BF33E5B00BA019D /* LMSRequest.h */,
+				DF1F20081BF33E5B00BA019D /* LMSRequest.m */,
 				DF1F20091BF33E5B00BA019D /* Service_Config.xml */,
-				DF1F200A1BF33E5B00BA019D /* ServiceError.h */,
-				DF1F200B1BF33E5B00BA019D /* ServiceError.m */,
-				DF1F200C1BF33E5B00BA019D /* ServiceModel.h */,
-				DF1F200D1BF33E5B00BA019D /* ServiceModel.m */,
-				DF1F200E1BF33E5B00BA019D /* ServiceXMLData.h */,
-				DF1F200F1BF33E5B00BA019D /* ServiceXMLData.m */,
+				DF1F200A1BF33E5B00BA019D /* LMSServiceError.h */,
+				DF1F200B1BF33E5B00BA019D /* LMSServiceError.m */,
+				DF1F200C1BF33E5B00BA019D /* LMSServiceModel.h */,
+				DF1F200D1BF33E5B00BA019D /* LMSServiceModel.m */,
+				DF1F200E1BF33E5B00BA019D /* LMSServiceXMLData.h */,
+				DF1F200F1BF33E5B00BA019D /* LMSServiceXMLData.m */,
 			);
 			path = IMNetKit;
 			sourceTree = "<group>";
@@ -550,7 +550,7 @@
 			files = (
 				DF1F20221BF33E5B00BA019D /* UIProgressView+AFNetworking.m in Sources */,
 				DF1F20201BF33E5B00BA019D /* UIButton+AFNetworking.m in Sources */,
-				DF1F20391BF33E5B00BA019D /* ServiceModel.m in Sources */,
+				DF1F20391BF33E5B00BA019D /* LMSServiceModel.m in Sources */,
 				DF1F20231BF33E5B00BA019D /* UIRefreshControl+AFNetworking.m in Sources */,
 				DF1F201F1BF33E5B00BA019D /* UIAlertView+AFNetworking.m in Sources */,
 				DF1F20121BF33E5B00BA019D /* AFHTTPRequestOperation.m in Sources */,
@@ -558,17 +558,17 @@
 				DF1F202C1BF33E5B00BA019D /* NSObject+MJClass.m in Sources */,
 				DF1F1F881BF33E0E00BA019D /* ViewController.m in Sources */,
 				DF1F20131BF33E5B00BA019D /* AFHTTPRequestOperationManager.m in Sources */,
-				DF1F20361BF33E5B00BA019D /* Request.m in Sources */,
+				DF1F20361BF33E5B00BA019D /* LMSRequest.m in Sources */,
 				DF1F20301BF33E5B00BA019D /* NSString+MJExtension.m in Sources */,
 				DF1F20311BF33E5B00BA019D /* README.md in Sources */,
 				DF1F20151BF33E5B00BA019D /* AFNetworkReachabilityManager.m in Sources */,
 				DF1F201C1BF33E5B00BA019D /* README.md in Sources */,
-				DF1F203A1BF33E5B00BA019D /* ServiceXMLData.m in Sources */,
+				DF1F203A1BF33E5B00BA019D /* LMSServiceXMLData.m in Sources */,
 				DF1F202B1BF33E5B00BA019D /* MJPropertyType.m in Sources */,
 				DF1F20211BF33E5B00BA019D /* UIImageView+AFNetworking.m in Sources */,
 				DF1F20191BF33E5B00BA019D /* AFURLResponseSerialization.m in Sources */,
 				DF1F202A1BF33E5B00BA019D /* MJPropertyKey.m in Sources */,
-				DF1F20381BF33E5B00BA019D /* ServiceError.m in Sources */,
+				DF1F20381BF33E5B00BA019D /* LMSServiceError.m in Sources */,
 				DF1F20341BF33E5B00BA019D /* README.md in Sources */,
 				DF1F202F1BF33E5B00BA019D /* NSObject+MJProperty.m in Sources */,
 				DF1F20261BF33E5B00BA019D /* MJDictionaryCache.m in Sources */,
@@ -588,7 +588,7 @@
 				DF1F20291BF33E5B00BA019D /* MJProperty.m in Sources */,
 				DF1F202E1BF33E5B00BA019D /* NSObject+MJKeyValue.m in Sources */,
 				DF1F1F821BF33E0E00BA019D /* main.m in Sources */,
-				DF1F20351BF33E5B00BA019D /* Networking.m in Sources */,
+				DF1F20351BF33E5B00BA019D /* LMSNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,6 +818,7 @@
 				DF1F1FAC1BF33E0E00BA019D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DF1F1FAD1BF33E0E00BA019D /* Build configuration list for PBXNativeTarget "IMNetworkingTests" */ = {
 			isa = XCConfigurationList;
@@ -826,6 +827,7 @@
 				DF1F1FAF1BF33E0E00BA019D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DF1F1FB01BF33E0E00BA019D /* Build configuration list for PBXNativeTarget "IMNetworkingUITests" */ = {
 			isa = XCConfigurationList;
@@ -834,6 +836,7 @@
 				DF1F1FB21BF33E0E00BA019D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

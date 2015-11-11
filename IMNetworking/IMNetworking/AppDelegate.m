@@ -19,7 +19,7 @@
     // Override point for customization after application launch.
     [LoginApi loginWithUserName:@"18538320461" password:@"123456" susessCallBack:^(LoginApi *response) {
         NSLog(@"success %@",response.email);
-    } failCallback:^(ServiceError *error) {
+    } failCallback:^(LMSServiceError *error) {
         NSLog(@"fail %@",error.message);
     }];
     return YES;

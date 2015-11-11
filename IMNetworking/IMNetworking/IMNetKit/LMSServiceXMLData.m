@@ -6,18 +6,22 @@
 //  Copyright © 2015年 LQ. All rights reserved.
 //
 
-#import "ServiceXMLData.h"
+#import "LMSServiceXMLData.h"
 #import "RXMLElement.h"
-#import "ServiceModel.h"
+#import "LMSServiceModel.h"
 
 static NSMutableDictionary* methods;
 static NSString * service_config = @"Service_Config.xml";
-@implementation ServiceXMLData
-+(void) load {
-    [ServiceXMLData loadServiceMethods];
+@implementation LMSServiceXMLData
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [LMSServiceXMLData loadServiceMethods];
+    });
 }
 
-+(void) loadServiceMethods {
++ (void)loadServiceMethods {
     
     RXMLElement *root = [RXMLElement elementFromXMLFile:service_config];
   
@@ -47,7 +51,7 @@ static NSString * service_config = @"Service_Config.xml";
     
     [root iterate:@"ServiceMethods.ServiceMethod" usingBlock: ^(RXMLElement *e) {
         
-        ServiceModel* method = [[ServiceModel alloc] init];
+        LMSServiceModel* method = [[LMSServiceModel alloc] init];
         method.name = [e attribute:@"Name"];
         method.method = [e attribute:@"Method"] ? [e attribute:@"Method"] : httpMethod;
         method.timeout = [e attribute:@"Timeout"] ? [[e attribute:@"Timeout"] integerValue] : timeout;
@@ -60,7 +64,8 @@ static NSString * service_config = @"Service_Config.xml";
         [methods setObject:method forKey:method.name];
     }];
 }
-+(ServiceModel*)methodWithName:(NSString *)methodName {
++ (LMSServiceModel*)methodWithName:(NSString *)methodName {
+    
     return [methods objectForKey:methodName];
 }
 @end

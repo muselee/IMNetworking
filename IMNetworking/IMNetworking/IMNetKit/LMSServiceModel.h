@@ -11,18 +11,29 @@
  */
 #import <Foundation/Foundation.h>
 
-@interface ServiceModel : NSObject
+@interface LMSServiceModel : NSObject
 
-@property (copy, nonatomic) NSString* name;
-@property (copy, nonatomic) NSString* method;
+@property (copy, nonatomic) NSString * name;
+
+@property (copy, nonatomic) NSString * method;
+
 @property (copy, nonatomic) NSString * address;
+
 @property (copy, nonatomic) NSString * parameters;
+
 @property (nonatomic) NSInteger timeout;
+
 @property (strong, nonatomic) Class returnType;
-@property (copy, nonatomic) NSString* timeoutMessage;
+
+@property (copy, nonatomic) NSString * timeoutMessage;
+
 @property (copy, nonatomic) NSString * failbackMessage;
+
 @property (nonatomic) BOOL isLoggingEnabled;
+
 - (NSString *)assembleAddress:(NSString*)address urls:(NSDictionary *) urlsDic;
+
 - (NSDictionary *)assembleParametersWithValues:(NSArray *)values;
-- (NSString*) messageForError:(NSError*) error;
+
+- (NSString*)messageForError:(NSError*) error;
 @end

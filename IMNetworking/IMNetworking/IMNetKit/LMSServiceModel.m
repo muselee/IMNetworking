@@ -6,15 +6,15 @@
 //  Copyright © 2015年 LQ. All rights reserved.
 //
 
-#import "ServiceModel.h"
-@interface ServiceModel(){
+#import "LMSServiceModel.h"
+@interface LMSServiceModel(){
     NSString * _absoluteUrl;
     NSString* _urlID;
     NSString* _urlVerb;
 }
 @property (strong,nonatomic)NSArray *parameterNames;
 @end
-@implementation ServiceModel
+@implementation LMSServiceModel
 
 
 - (NSString *)assembleAddress:(NSString *)address urls:(NSDictionary *)urlsDic{

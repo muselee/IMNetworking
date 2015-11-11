@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 
-typedef NS_ENUM(NSInteger,ServiceErrorType) {
-    ServiceErrorTypeHttp,
-    ServiceErrorTypeNetwork,
-    ServiceErrorTypeParsing
+typedef NS_ENUM(NSInteger,LMSServiceErrorType) {
+    LMSServiceErrorTypeHttp,
+    LMSServiceErrorTypeNetwork,
+    LMSServiceErrorTypeParsing
 };
-@interface ServiceError : NSObject
-@property (retain, nonatomic) NSString* message;
+@interface LMSServiceError : NSObject
+@property (copy, nonatomic) NSString * message;
 @property (nonatomic) NSInteger httpCode;
 @property (nonatomic) NSInteger errorType;
 @end
