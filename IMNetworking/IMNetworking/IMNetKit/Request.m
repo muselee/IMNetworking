@@ -11,7 +11,6 @@
 #import "ServiceXMLData.h"
 @interface Request(){
     ServiceModel* _serviceMethod;
-    
     NSArray* _parameterValues;
     callBackResponse _successCallback;
     callBackResponse _failCallback;
@@ -24,7 +23,7 @@
     [self send];
 }
 -(void) setHeaderValue:(NSString*) value forName:(NSString*) name{
-    
+    [self.requestSerializer setValue:value forHTTPHeaderField:name];
 }
 -(void) send:(callBackResponse) successCallback failCallback:(callBackResponse)failCallback {
     
