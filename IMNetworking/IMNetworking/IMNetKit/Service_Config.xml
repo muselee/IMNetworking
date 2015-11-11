@@ -1,0 +1,33 @@
+
+<!--请求配置xml-->
+<Service>
+    <Urls>
+        
+        <Url Name="url1">1111111111111111111</Url>
+        <Url Name="url2">http://www.perasst.com:8081/</Url>
+
+    </Urls>
+    
+    <Defaults
+    
+    Method="POST"
+    Timeout="1"
+    TimeoutMessage="超时"
+    FailbackMessage="网络错误"
+    IsLoggingEnabled="YES"/>
+    
+    <ServiceMethods>
+        
+        <ServiceMethod
+        Name="Login"
+        Method="POST"
+        Parameters="userName,password"
+        Url="[url2]perasst_v2/user/login.pa"
+        ReturnType="LoginApi"/>
+
+
+    </ServiceMethods>
+
+    
+</Service>
+
