@@ -113,10 +113,4 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
     
     return aModel;
 }
-- (void)addresponseSerializerContentTypes:(NSString *)contentType
-{
-    NSMutableSet *nSet = [NSMutableSet setWithSet:self.responseSerializer.acceptableContentTypes];
-    [nSet addObject:contentType];
-    [self.responseSerializer setAcceptableContentTypes:nSet];
-}
 @end
