@@ -17,19 +17,16 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
 
 - (AFHTTPRequestOperation *)sendRequestForURL:(NSURL *)aURL httpMethod:(NSString *)httpMethod responseModelClass:(Class)responseModelClass withParameters:(NSDictionary *)parameters success:(BlockHTTPRequestSuccess)success failure:(BlockHTTPRequestFailure)failure
 {
-    //Add public HTTP params
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    //添加公共参数
-    //相同key会覆盖公共参数
-    [dictionary addEntriesFromDictionary:parameters];
     
     NSError *reError = nil;
-    NSURLRequest *request = [self.requestSerializer requestWithMethod:httpMethod URLString:[aURL absoluteString] parameters:dictionary error:&reError];
+    NSURLRequest *request = [self.requestSerializer requestWithMethod:httpMethod URLString:[aURL absoluteString] parameters:parameters error:&reError];
+    self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"text/html",@"application/json",nil];
     NSAssert(reError == nil, @"get request error:Url = %@ Method = %@ param = %@", aURL, httpMethod, parameters);
     
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
         if (_isLoggingEnabled) {
-            NSLog(@"responseObject %@",responseObject);
+            NSLog(@"url=== %@ parameters===%@ responseObject== %@",aURL,parameters,responseObject);
         }
         NSError *error = nil;
         //转换模型
@@ -98,7 +95,6 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
     
     @try
     {
-        //如何需要特殊处理服务器返回的数据结构，在此处处理
         aModel = (NSObject *)[ModelClass objectWithKeyValues:dictionary error:error];
     }
     @catch (NSException *exception) {
@@ -113,4 +109,5 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
     
     return aModel;
 }
+
 @end

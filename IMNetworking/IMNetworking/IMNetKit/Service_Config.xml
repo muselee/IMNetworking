@@ -4,12 +4,14 @@
     <Urls>
         
         <Url Name="url1">1111111111111111111</Url>
-        <Url Name="url2">http://www.perasst.com:8081/</Url>
+        <Url Name="url2">22222222222222222/</Url>
 
     </Urls>
     
     <Defaults
-    
+    Message=""
+    CommonParameters="typeid"
+    ShowWaitBox="YES"
     Method="POST"
     Timeout="30"
     TimeoutMessage="超时"
@@ -20,9 +22,9 @@
         
         <ServiceMethod
         Name="Login"
-        Method="POST"
-        Parameters="userName,password"
-        Url="[url2]perasst_v2/user/login.pa"
+        Method="GET"
+        Parameters="user_login,user_pass"
+        Url="[url2]user/huserlogin/Logins"
         ReturnType="LoginApi"/>
 
 

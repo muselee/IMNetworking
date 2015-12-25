@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LMSRequest.h"
 @interface LoginApi : NSObject
-@property (copy,nonatomic)NSString * msg;
-@property (copy,nonatomic)NSString * email;
-
+@property (copy,nonatomic)NSString * code;
+@property (copy,nonatomic)NSString * message;
+@property (copy,nonatomic)NSDictionary * data;
 
 + (void)loginWithUserName:(NSString *)userName
                  password:(NSString *)password

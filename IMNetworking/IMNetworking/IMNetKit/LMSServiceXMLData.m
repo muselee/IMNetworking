@@ -31,15 +31,24 @@ static NSString * service_config = @"Service_Config.xml";
     __block BOOL isLoggingEnabled;
     __block NSString* timeoutMessage;
     __block NSString* failbackMessage;
+    __block NSString* message;
+    __block BOOL showWaitBox;
+    __block NSString * commonParameters;
     
     //获取默认设置
     [root iterate:@"Defaults" usingBlock: ^(RXMLElement *e) {
         
-        httpMethod = [e attribute:@"Method"] ? [e attribute:@"Method"] : @"POST";
-        timeout = [e attribute:@"Timeout"] ? [[e attribute:@"Timeout"] integerValue] :15;
+        httpMethod = [e attribute:@"Method"] ? [e attribute:@"Method"] : @"GET";
+        timeout = [e attribute:@"Timeout"] ? [[e attribute:@"Timeout"] integerValue] :60;
+        
+        message = [e attribute:@"Message"] ? [e attribute:@"Message"] : @"";
+         showWaitBox = [e attribute:@"ShowWaitBox"] ? [[[e attribute:@"ShowWaitBox"] uppercaseString]isEqualToString:@"YES"] : YES;
         isLoggingEnabled = [e attribute:@"IsLoggingEnabled"] ? [[[e attribute:@"IsLoggingEnabled"] uppercaseString] isEqualToString:@"YES"] : NO;
         timeoutMessage = [e attribute:@"TimeoutMessage"] ? [e attribute:@"TimeoutMessage"] : nil;
         failbackMessage = [e attribute:@"FailbackMessage"] ? [e attribute:@"FailbackMessage"] : nil;
+        
+        commonParameters= [e attribute:@"CommonParameters"]?:nil;
+        
     }];
 
     
@@ -58,9 +67,13 @@ static NSString * service_config = @"Service_Config.xml";
         method.returnType = NSClassFromString([e attribute:@"ReturnType"]);
         method.address = [method assembleAddress:[e attribute:@"Url"] urls:urls];
         method.parameters = [e attribute:@"Parameters"];
+        method.commonParameters = commonParameters;
         method.isLoggingEnabled = [e attribute:@"IsLoggingEnabled"] ? [[[e attribute:@"IsLoggingEnabled"] uppercaseString] isEqualToString:@"YES"] : isLoggingEnabled;
         method.timeoutMessage = [e attribute:@"TimeoutMessage"] ? [e attribute:@"TimeoutMessage"] : timeoutMessage;
         method.failbackMessage = [e attribute:@"FailbackMessage"] ? [e attribute:@"FailbackMessage"] : failbackMessage;
+        
+        method.message = [e attribute:@"Message"] ? [e attribute:@"Message"] : message;
+        method.showWaitBox = [e attribute:@"ShowWaitBox"] ? [[[e attribute:@"ShowWaitBox"] uppercaseString]isEqualToString:@"YES"] : showWaitBox;
         [methods setObject:method forKey:method.name];
     }];
 }

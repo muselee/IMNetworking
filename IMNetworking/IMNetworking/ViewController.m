@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "LoginApi.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [LoginApi loginWithUserName:@"chengqing" password:@"123456" susessCallBack:^(LoginApi *response) {
+        NSLog(@"success %@",response);
+    } failCallback:^(LMSServiceError *error) {
+        NSLog(@"fail %@",error.message);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -14,6 +14,8 @@
     NSArray* _parameterValues;
     callBackResponse _successCallback;
     callBackResponse _failCallback;
+    
+    NSArray * _commonValues;
 }
 @end
 @implementation LMSRequest
@@ -40,12 +42,22 @@
     //获取请求方法
     NSString * method = [_serviceMethod.method uppercaseString];
     //拼接参数
-    NSDictionary * parameter = [_serviceMethod assembleParametersWithValues:_parameterValues];
+    NSMutableDictionary * parameter = [_serviceMethod assembleParametersWithValues:_parameterValues];
+   
+    //获取公共参数
+    NSMutableDictionary * commonParameter = [_serviceMethod assembleCommonParametersWithValues:_commonValues];
+    if (commonParameter) {
+        [parameter addEntriesFromDictionary:commonParameter];
+        if (parameter==nil) {
+            parameter = commonParameter;
+        }
+    }
     //设置超时
     self.requestSerializer.timeoutInterval = _serviceMethod.timeout;
+    
     [self sendRequestForURL:url httpMethod:method responseModelClass:_serviceMethod.returnType withParameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (_successCallback) {
-             _successCallback(responseObject);
+           _successCallback(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (_failCallback) {
@@ -82,5 +94,8 @@
     request->_serviceMethod = [LMSServiceXMLData methodWithName:serviceMethodName];
     request->_parameterValues = parameterValues;
     return request;
+}
+- (void)addCommonParameterValues:(NSArray *)parameterValues{
+    _commonValues =[ NSArray arrayWithArray:parameterValues];
 }
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginApi.h"
 @interface AppDelegate ()
 
 @end
@@ -17,11 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [LoginApi loginWithUserName:@"18538320461" password:@"123456" susessCallBack:^(LoginApi *response) {
-        NSLog(@"success %@",response.email);
-    } failCallback:^(LMSServiceError *error) {
-        NSLog(@"fail %@",error.message);
-    }];
+    
     return YES;
 }
 

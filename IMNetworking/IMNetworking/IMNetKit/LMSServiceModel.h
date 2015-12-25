@@ -31,9 +31,17 @@
 
 @property (nonatomic) BOOL isLoggingEnabled;
 
+@property (retain, nonatomic) NSString* message;
+
+@property (nonatomic) BOOL showWaitBox;
+
+@property (copy,nonatomic) NSString * commonParameters;
+
 - (NSString *)assembleAddress:(NSString*)address urls:(NSDictionary *) urlsDic;
 
-- (NSDictionary *)assembleParametersWithValues:(NSArray *)values;
+- (NSMutableDictionary *)assembleParametersWithValues:(NSArray *)values;
+
+- (NSMutableDictionary *)assembleCommonParametersWithValues:(NSArray *)values;
 
 - (NSString*)messageForError:(NSError*) error;
 @end

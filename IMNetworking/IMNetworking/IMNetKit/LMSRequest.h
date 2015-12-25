@@ -27,6 +27,8 @@ typedef void (^callBackResponse)(id);
 
 - (void)setHeaderValue:(NSString *)value forName:(NSString *)name;
 
+- (void)addCommonParameterValues:(NSArray *)parameterValues;
+
 + (instancetype)create:(NSString *)serviceMethodName parameterValues:(NSArray *)parameterValues;
 
 @end

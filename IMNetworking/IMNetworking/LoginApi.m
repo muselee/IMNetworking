@@ -10,13 +10,6 @@
 
 @implementation LoginApi
 
-
-+ (NSDictionary *)replacedKeyFromPropertyName{
-    return @{
-             @"email":@"res.email"
-             };
-}
-
 + (void)loginWithUserName:(NSString *)userName password:(NSString *)password susessCallBack:(void (^)(LoginApi *))successCallBack failCallback:(void (^)(LMSServiceError *))failCallback{
     LMSRequest * request=[LMSRequest create:@"Login" parameterValues:@[userName,password]];
     [request send:successCallBack failCallback:failCallback];

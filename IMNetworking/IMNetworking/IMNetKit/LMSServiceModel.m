@@ -12,7 +12,6 @@
     NSString* _urlID;
     NSString* _urlVerb;
 }
-@property (strong,nonatomic)NSArray *parameterNames;
 @end
 @implementation LMSServiceModel
 
@@ -37,12 +36,11 @@
     return urlString;
 
 }
--(NSDictionary *)assembleParametersWithValues:(NSArray *)values{
+-(NSMutableDictionary *)assembleParametersWithValues:(NSArray *)values{
     if (_parameters.length>0) {
         NSMutableDictionary * parameterDic = [[NSMutableDictionary alloc]init];
-        _parameterNames = [[NSMutableArray alloc] init];
-        _parameterNames = [_parameters componentsSeparatedByString:@","];
-        [_parameterNames enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray * names = [_parameters componentsSeparatedByString:@","];
+        [names enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString * value = values[idx];
             [parameterDic setValue:value forKey:key];
         }];
@@ -51,6 +49,19 @@
     return nil;
 }
 
+- (NSMutableDictionary *)assembleCommonParametersWithValues:(NSArray *)values{
+    if (_commonParameters.length>0) {
+        NSMutableDictionary * parameterDic = [[NSMutableDictionary alloc]init];
+
+        NSArray * names = [_commonParameters componentsSeparatedByString:@","];
+        [names enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString * value = values[idx];
+            [parameterDic setValue:value forKey:key];
+        }];
+        return parameterDic;
+    }
+    return nil;
+}
 -(NSString*) messageForError:(NSError *) error {
     
     if (error.code == -1001 && _timeoutMessage) {
