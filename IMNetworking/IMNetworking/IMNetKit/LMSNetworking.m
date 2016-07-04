@@ -15,41 +15,51 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
 
 #pragma mark - 基础Http请求
 
-- (AFHTTPRequestOperation *)sendRequestForURL:(NSURL *)aURL httpMethod:(NSString *)httpMethod responseModelClass:(Class)responseModelClass withParameters:(NSDictionary *)parameters success:(BlockHTTPRequestSuccess)success failure:(BlockHTTPRequestFailure)failure
+- (MSURLSSessionTask *)sendRequestForURL:(NSURL *)aURL
+                                   httpMethod:(NSString *)httpMethod
+                           responseModelClass:(Class)responseModelClass
+                                   parameters:(NSDictionary *)parameters
+                                      success:(BlockHTTPRequestSuccess)success
+                                      failure:(BlockHTTPRequestFailure)failure
 {
     
     NSError *reError = nil;
     NSURLRequest *request = [self.requestSerializer requestWithMethod:httpMethod URLString:[aURL absoluteString] parameters:parameters error:&reError];
+    
+    NSLog(@"reError %@",reError.userInfo);
     self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"text/html",@"application/json",nil];
     NSAssert(reError == nil, @"get request error:Url = %@ Method = %@ param = %@", aURL, httpMethod, parameters);
     
-    AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (_isLoggingEnabled) {
-            NSLog(@"url=== %@ parameters===%@ responseObject== %@",aURL,parameters,responseObject);
-        }
-        NSError *error = nil;
-        //转换模型
-        NSObject *responseModel = [LMSNetworking modelFromResponseDictionary:[LMSNetworking dictionaryFromResponseData:responseObject] withModelClass:responseModelClass error:&error];
-        
-        if (error == nil && success && responseModelClass != nil) {
-            success(operation, responseModel);
-        }else{
-            failure(operation, error);
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
-            failure(operation, error);
-        }
-    }];
-    if (operation != nil) {
-        [self.operationQueue addOperation:operation];
-    }else{
-        NSLog(@"error operation = nil");
-    }
+    __block MSURLSSessionTask * task = nil;
     
-    return operation;
+   task = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+       
+       if (_isLoggingEnabled) {
+           NSLog(@"url=== %@ parameters===%@ responseObject== %@",response.URL,parameters,responseObject);
+       }
+       
+       if (error) {
+           if(failure) {
+               failure(task, error);
+           }
+       }else{
+           
+           NSError *convertError = nil;
+           //转换模型
+           NSObject *responseModel = [LMSNetworking modelFromResponseDictionary:[LMSNetworking dictionaryFromResponseData:responseObject] withModelClass:responseModelClass error:&convertError];
+           
+           if (convertError == nil && success && responseModelClass != nil) {
+               success(task, responseModel);
+           }else{
+               failure(task, convertError);
+           }
+
+       }
+
+       
+    }];
+    [task resume];
+    return task;
 }
 #pragma mark - Model Network Client Support Service data
 
@@ -95,7 +105,7 @@ NSString *const kNetworkDataParseErrorDomain = @"Networking.PARSE.ERROR";
     
     @try
     {
-        aModel = (NSObject *)[ModelClass objectWithKeyValues:dictionary error:error];
+        aModel = (NSObject *)[ModelClass yy_modelWithDictionary:dictionary];
     }
     @catch (NSException *exception) {
         *error = [NSError errorWithDomain:kNetworkDataParseErrorDomain

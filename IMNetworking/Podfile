@@ -1,0 +1,7 @@
+
+
+target "IMNetworking" do
+pod 'YYModel'
+pod 'RaptureXML'
+pod 'AFNetworking'
+end

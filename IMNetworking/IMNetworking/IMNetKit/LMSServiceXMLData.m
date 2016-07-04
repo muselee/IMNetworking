@@ -7,7 +7,7 @@
 //
 
 #import "LMSServiceXMLData.h"
-#import "RXMLElement.h"
+#import <RXMLElement.h>
 #import "LMSServiceModel.h"
 
 static NSMutableDictionary* methods;
@@ -39,6 +39,7 @@ static NSString * service_config = @"Service_Config.xml";
     [root iterate:@"Defaults" usingBlock: ^(RXMLElement *e) {
         
         httpMethod = [e attribute:@"Method"] ? [e attribute:@"Method"] : @"GET";
+        
         timeout = [e attribute:@"Timeout"] ? [[e attribute:@"Timeout"] integerValue] :60;
         
         message = [e attribute:@"Message"] ? [e attribute:@"Message"] : @"";
@@ -52,8 +53,8 @@ static NSString * service_config = @"Service_Config.xml";
     }];
 
     
-    methods = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* urls = [[NSMutableDictionary alloc] init];
+    methods = @{}.mutableCopy;
+    NSMutableDictionary * urls = @{}.mutableCopy;
     [root iterate:@"Urls.Url" usingBlock: ^(RXMLElement *e) {
         [urls setObject:[e description] forKey:[e attribute:@"Name"]];
     }];

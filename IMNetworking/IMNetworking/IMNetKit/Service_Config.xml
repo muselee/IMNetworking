@@ -4,7 +4,7 @@
     <Urls>
         
         <Url Name="url1">1111111111111111111</Url>
-        <Url Name="url2">22222222222222222/</Url>
+        <Url Name="url2">http://test.bd.app.bestdo.com/2.1.0/</Url>
 
     </Urls>
     
@@ -23,8 +23,8 @@
         <ServiceMethod
         Name="Login"
         Method="GET"
-        Parameters="user_login,user_pass"
-        Url="[url2]user/huserlogin/Logins"
+        Parameters=""
+        Url="[url2]merchandise/publicity"
         ReturnType="LoginApi"/>
 
 

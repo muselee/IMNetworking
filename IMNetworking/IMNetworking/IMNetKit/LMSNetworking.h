@@ -7,7 +7,7 @@
 //
 
 #import "AFNetworking.h"
-#import "MJExtension.h"
+#import <YYModel.h>
 #define kModelNetworkDefaultArrayKey    @"kObjectDefaultArrayKey"
 #define kNetworkAPIErrorModelParse      @"Model解析错误[数据类型不匹配]"
 typedef NS_ENUM(NSUInteger,LMSNetworkAPIErrorCode) {
@@ -15,21 +15,23 @@ typedef NS_ENUM(NSUInteger,LMSNetworkAPIErrorCode) {
     LMSNetworkAPIErrorCodeModelParse = 9999
     
 };
-// 成功和失败块
-typedef void (^BlockHTTPRequestSuccess)(AFHTTPRequestOperation *operation, id responseObject);
-typedef void (^BlockHTTPRequestFailure)(AFHTTPRequestOperation *operation, NSError *error);
 
-@interface LMSNetworking : AFHTTPRequestOperationManager
+typedef NSURLSessionTask MSURLSSessionTask;
+// 成功和失败块
+typedef void (^BlockHTTPRequestSuccess)(MSURLSSessionTask *task, id responseObject);
+typedef void (^BlockHTTPRequestFailure)(MSURLSSessionTask *task, NSError *error);
+
+@interface LMSNetworking : AFHTTPSessionManager
 
 
 @property (nonatomic,assign) BOOL isLoggingEnabled;
 
 //基础类
-- (AFHTTPRequestOperation *)sendRequestForURL:(NSURL *)fullURL
-                                   httpMethod:(NSString *)httpMethod
-                           responseModelClass:(Class)responseModelClass
-                               withParameters:(NSDictionary *)parameters
-                                      success:(BlockHTTPRequestSuccess)success
-                                      failure:(BlockHTTPRequestFailure)failure;
+- (MSURLSSessionTask *)sendRequestForURL:(NSURL *)fullURL
+                              httpMethod:(NSString *)httpMethod
+                      responseModelClass:(Class)responseModelClass
+                              parameters:(NSDictionary *)parameters
+                                 success:(BlockHTTPRequestSuccess)success
+                                 failure:(BlockHTTPRequestFailure)failure;
 
 @end

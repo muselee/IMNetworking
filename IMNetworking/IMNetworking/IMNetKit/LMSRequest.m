@@ -55,11 +55,11 @@
     //设置超时
     self.requestSerializer.timeoutInterval = _serviceMethod.timeout;
     
-    [self sendRequestForURL:url httpMethod:method responseModelClass:_serviceMethod.returnType withParameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self sendRequestForURL:url httpMethod:method responseModelClass:_serviceMethod.returnType parameters:parameter success:^(MSURLSSessionTask *task, id responseObject) {
         if (_successCallback) {
-           _successCallback(responseObject);
+            _successCallback(responseObject);
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(MSURLSSessionTask *task, NSError *error) {
         if (_failCallback) {
             LMSServiceError* serviceError = nil;
             if (error != nil) {
@@ -74,18 +74,17 @@
                     serviceError.message = [_serviceMethod messageForError:error];
                     serviceError.errorType = LMSServiceErrorTypeNetwork;
                 }
-               
+                
             }
             else {
                 // http 请求错误
                 serviceError = [[LMSServiceError alloc] init];
-                serviceError.httpCode = operation.response.statusCode;
-                serviceError.message = operation.responseString;
                 serviceError.errorType = LMSServiceErrorTypeHttp;
             }
-
+            
             _failCallback(serviceError);
         }
+
     }];
 }
 +(instancetype) create:(NSString*)serviceMethodName parameterValues:(NSArray*) parameterValues {
